@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Rebuild dist/install-buddy.tar.gz if any source file changed.
+# Activate with: git config core.hooksPath .githooks
+set -euo pipefail
+
+changed=$(git diff --cached --name-only --diff-filter=ACMR)
+
+sources="SKILL.md scripts/detect_os.sh assets/example-config.yaml \
+         references/package-name-map.md references/safeguards.md"
+
+needs_rebuild=0
+for f in $sources; do
+  if echo "$changed" | grep -qF "$f"; then needs_rebuild=1; break; fi
+done
+
+if [ "$needs_rebuild" -eq 1 ]; then
+  echo "[pre-commit] Rebuilding dist/install-buddy.tar.gz..."
+  make bundle
+  git add dist/install-buddy.tar.gz
+  echo "[pre-commit] Bundle updated and staged."
+fi

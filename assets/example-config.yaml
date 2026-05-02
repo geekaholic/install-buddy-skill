@@ -1,0 +1,43 @@
+# Example install-buddy config.
+#
+# Pass this file to /install-buddy and the skill will resolve each entry
+# against your active package manager, show you the plan, and wait for
+# confirmation before running anything.
+#
+# The shape is intentionally forgiving: bare strings work for anything
+# that has the same name everywhere; objects are for cross-manager
+# differences and platform gating.
+
+packages:
+  # Same name everywhere — bare string is fine.
+  - htop
+  - ripgrep
+  - jq
+  - fzf
+
+  # Name differs across managers.
+  - name: fd
+    apt: fd-find
+    dnf: fd-find
+
+  # GitHub CLI: different name on Arch.
+  - name: gh
+    pacman: github-cli
+    apk: github-cli
+
+  # macOS-only (brew cask for the GUI app).
+  - name: rectangle
+    brew: rectangle
+    cask: true
+    only_on: [macos]
+
+  # Linux-only example.
+  - name: build-essential
+    apt: build-essential
+    dnf: '@development-tools'
+    pacman: base-devel
+    only_on: [linux]
+
+  # Restricted to a specific distro family.
+  - name: keyd
+    only_on: [arch, fedora]
