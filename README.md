@@ -2,14 +2,14 @@
 
 A Claude Code skill that installs software packages using the right native package manager for your OS — Homebrew on macOS, and apt/dnf/pacman/zypper/apk on Linux. Shows you every command before running it. Refuses destructive operations.
 
-[![Rebuild bundle](https://github.com/YOUR_USERNAME/install-buddy/actions/workflows/bundle.yml/badge.svg)](https://github.com/YOUR_USERNAME/install-buddy/actions/workflows/bundle.yml)
+[![Rebuild bundle](https://github.com/geekaholic/install-buddy/actions/workflows/bundle.yml/badge.svg)](https://github.com/geekaholic/install-buddy/actions/workflows/bundle.yml)
 
 ---
 
 ## Install
 
 ```bash
-curl -fsSL https://github.com/YOUR_USERNAME/install-buddy/raw/main/dist/install-buddy.tar.gz \
+curl -fsSL https://github.com/geekaholic/install-buddy/raw/main/dist/install-buddy.tar.gz \
   | tar -xz -C ~/.claude/skills/
 ```
 
@@ -111,7 +111,7 @@ Full rationale: [`references/safeguards.md`](references/safeguards.md)
 ## Local development
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/install-buddy
+git clone https://github.com/geekaholic/install-buddy
 cd install-buddy
 
 # Enable the pre-commit hook (rebuilds the bundle automatically before each commit)
